@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sw_g1/cards.dart';
+import 'package:sw_g1/list.dart';
 
 void main() {
   runApp(myapp());
@@ -30,16 +32,35 @@ class LandingPage extends StatelessWidget {
         }),
         // Image.asset('Assets/images/a.png'),
         title: Padding(
-          padding: EdgeInsets.symmetric(vertical: 100),
-          child: Text(
+            padding: EdgeInsets.symmetric(vertical: 100),
+            child: Text.rich(
+              TextSpan(
+                text: "ኢት",
+                style: TextStyle(
+                  color: Colors.green[700],
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: "ዮ-ግ",
+                    style: TextStyle(color: Colors.yellow),
+                  ),
+                  TextSpan(
+                    text: "ዕዝ",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ],
+              ),
+            )
+
+            /* Text(
             "ኢትዮ-ግዕዝ",
             style: TextStyle(
               color: Colors.amber[900],
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-          ),
-        ),
+          ), */
+            ),
         centerTitle: true,
         backgroundColor: Colors.grey[500],
         actions: [
@@ -61,6 +82,7 @@ class LandingPage extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
+        width: 200,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
@@ -129,7 +151,25 @@ class LandingPage extends StatelessWidget {
           ],
         ),
       ),
-      // body: ,
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.red, Colors.green])),
+        child: Row(children: [
+          Expanded(
+            child: SizedBox(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return Bookcard();
+                },
+                itemCount: 100,
+              ),
+            ),
+          ),
+        ]),
+      ),
       bottomNavigationBar: BottomAppBar(
         notchMargin: 5.0,
         shape: CircularNotchedRectangle(),
